@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\DynamicForm.Api.Application\DynamicForm.Api.Application.csproj" />
     <ProjectReference Include="..\..\Core\DynamicForm.Api.Domain\DynamicForm.Api.Domain.csproj" />
   </ItemGroup>
 

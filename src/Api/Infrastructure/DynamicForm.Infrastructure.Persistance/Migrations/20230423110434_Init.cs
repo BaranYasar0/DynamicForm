@@ -13,7 +13,7 @@ namespace DynamicForm.Infrastructure.Persistance.Migrations
                 name: "Form",
                 columns: table => new
                 {
-                    Form_Id = table.Column<int>(type: "int", nullable: false)
+                    DynamicFormApiDomainEntitiesForm_Id = table.Column<int>(name: "DynamicForm.Api.Domain.Entities.Form_Id", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -23,14 +23,14 @@ namespace DynamicForm.Infrastructure.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Form", x => x.Form_Id);
+                    table.PrimaryKey("PK_Form", x => x.DynamicFormApiDomainEntitiesForm_Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Field",
                 columns: table => new
                 {
-                    Form_Id = table.Column<int>(type: "int", nullable: false)
+                    DynamicFormApiDomainEntitiesField_Id = table.Column<int>(name: "DynamicForm.Api.Domain.Entities.Field_Id", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     F_Req = table.Column<bool>(type: "bit", nullable: false),
                     F_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -41,12 +41,12 @@ namespace DynamicForm.Infrastructure.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Field", x => x.Form_Id);
+                    table.PrimaryKey("PK_Field", x => x.DynamicFormApiDomainEntitiesField_Id);
                     table.ForeignKey(
                         name: "FK_Field_Form_FormId",
                         column: x => x.FormId,
                         principalTable: "Form",
-                        principalColumn: "Form_Id");
+                        principalColumn: "DynamicForm.Api.Domain.Entities.Form_Id");
                 });
 
             migrationBuilder.CreateIndex(

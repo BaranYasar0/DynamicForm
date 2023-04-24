@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DynamicForm.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20230421200703_Init")]
+    [Migration("20230423110434_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,7 +29,7 @@ namespace DynamicForm.Infrastructure.Persistance.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("Form_Id");
+                        .HasColumnName("DynamicForm.Api.Domain.Entities.Field_Id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -72,7 +72,7 @@ namespace DynamicForm.Infrastructure.Persistance.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("Form_Id");
+                        .HasColumnName("DynamicForm.Api.Domain.Entities.Form_Id");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
