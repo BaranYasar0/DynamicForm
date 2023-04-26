@@ -8,7 +8,7 @@
                 <h5 class="card-title">Forms</h5>
 
 
-                @if (Model.Any())
+                @if (Model!=null&& Model.Any())
                 {
                     @foreach (var item in Model)
                     {
@@ -58,7 +58,7 @@
                 }
                 else
                 {
-                    <p>Data yok...</p>
+                    <button class="btn btn-primary">Formunuz yok veya giriş yapmadınız...</button>
                 }
 
 

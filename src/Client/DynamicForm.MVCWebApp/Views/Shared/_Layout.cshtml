@@ -21,13 +21,6 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Form" asp-action="Index">Formlar</a>
-                        </li>
-                        
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="https://localhost:7038/swagger/index.html">Api</a>
-                            </li>
                        
                         @if (!User.Identity.IsAuthenticated)
                         {
@@ -35,15 +28,31 @@
                                 <a class="nav-link text-dark" asp-controller="Auth" asp-action="Login" >Giriş Yap</a>
                             </li>
 
+                           
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Form" asp-action="GetFormsByUserId" >Formlarım</a>
+                                <a class="nav-link text-dark" asp-controller="Auth" asp-action="Register" >Kayıt Ol</a>
                             </li>
                         }
                         
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Form" asp-action="Index">Formlar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Form" asp-action="GetFormsByUserId" >Formlarım</a>
+                            </li>
+                              
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Form" asp-action="CreateForm" >Form Oluştur</a>
+                            </li>
+                      @if (User.Identity.IsAuthenticated)
+                      {
+                          <li class="nav-item">
+                              <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="LogOut">Çıkış Yap</a>
+                          </li>
+                      }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Auth" asp-action="Register" >Kayıt Ol</a>
+                            <a class="nav-link text-dark" href="https://localhost:7038/swagger/index.html">Api</a>
                         </li>
-                        
                        
                        
                         

@@ -22,7 +22,11 @@ namespace DynamicForm.MVCWebApp.Handlers
             {
                 request.Headers.Authorization= new AuthenticationHeaderValue("Bearer", token);
                 
+                var response= await base.SendAsync(request, cancellationToken);
+                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    throw new Exception("Yetkin Yok!");
             }
+            
             return await base.SendAsync(request, cancellationToken);
         }
     }

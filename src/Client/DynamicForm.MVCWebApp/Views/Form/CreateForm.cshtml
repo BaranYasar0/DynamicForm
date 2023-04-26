@@ -1,0 +1,51 @@
+﻿
+<div class="col-auto">
+
+    <div id="create_form_dialog">
+        <form id="myForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="Name"><br><br>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="Description"><br><br>
+            @*<label for="CreatedBy">Created By:</label>
+            <input type="text" id="createdBy" name="CreatedBy"><br><br>*@
+
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <button onclick="togglePopup()" id="create_form_button">Form Oluştur</button>
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        // Submit form data via AJAX on form submission
+        $('#myForm').submit(function (event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Get form data
+            var valdata = $("#myForm").serialize();
+            alert(valdata);
+
+            // Send AJAX request to specified URL with form data
+            $.ajax({
+                url: 'https://localhost:7038/api/Form/ekle',
+                type: 'POST',
+                dataType: 'json',
+                data: valdata,
+                success: function (response) {
+                    console.log('Form data submitted successfully:', response);
+                    // Add your own success message or redirect the user to a success page
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error submitting form data:', error);
+                    // Add your own error message or handle the error gracefully
+                }
+            });
+        });
+    });
+</script>

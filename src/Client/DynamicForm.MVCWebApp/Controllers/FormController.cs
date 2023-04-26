@@ -14,13 +14,23 @@ namespace DynamicForm.MVCWebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Login", "Auth");
             return View(await _formService.GetFormList());
         }
 
         public async Task<IActionResult> GetFormsByUserId()
         {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Login", "Auth");
             return View(await _formService.GetFormsByUserId());
+        }
+
+        public IActionResult CreateForm()
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Login", "Auth");
+            return View();
         }
     }
 }

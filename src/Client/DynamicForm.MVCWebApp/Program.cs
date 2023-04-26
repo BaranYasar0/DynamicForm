@@ -25,6 +25,12 @@ builder.Services.AddTransient<TokenHandler>();
 builder.Services.AddScoped<IFormService, FormService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserSharedService, UserSharedService>();
+//builder.Services.AddScoped<AuthorizationMiddleware>();
+
+//builder.Services.ConfigureApplicationCookie(x =>
+//{
+//    x.AccessDeniedPath=new PathString()
+//})
 
 
 builder.Services.AddHttpClient<IAuthService, AuthService>(client =>
@@ -41,21 +47,27 @@ builder.Services.AddHttpClient<IFormService, FormService>(client =>
 
 TokenOptions? tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+//{
+//    options.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidateIssuer = true,
+//        ValidateAudience = true,
+//        ValidateLifetime = true,
+//        ValidIssuer = tokenOptions.Issuer,
+//        ValidAudience = tokenOptions.Audience,
+//        ValidateIssuerSigningKey = true,
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey))
+//    };
+//});
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opt =>
 {
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidIssuer = tokenOptions.Issuer,
-        ValidAudience = tokenOptions.Audience,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey))
-    };
+    opt.LoginPath = "/Auth/Login";
+    opt.ExpireTimeSpan = TimeSpan.FromDays(60);
+    opt.SlidingExpiration = true;
+    opt.Cookie.Name = "webcookie";
 });
-
-
 
 
 
@@ -73,8 +85,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
+//app.UseMiddleware<AuthorizationMiddleware>();
 app.UseAuthentication();
+
+app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
