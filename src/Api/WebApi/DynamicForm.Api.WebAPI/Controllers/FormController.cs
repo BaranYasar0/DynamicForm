@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DynamicForm.Api.WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FormController : BaseController
@@ -25,6 +26,7 @@ namespace DynamicForm.Api.WebAPI.Controllers
             return Ok(await Mediator.Send(createFormCommand));
         }
 
+        //[Authorize(Roles = "deneme")]
         [HttpGet]
         public async Task<IActionResult> Get()
         {

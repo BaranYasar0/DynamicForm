@@ -18,6 +18,9 @@ namespace DynamicForm.MVCWebApp.Controllers
             return View(await _formService.GetFormList());
         }
 
-        
+        public async Task<IActionResult> GetFormsByUserId()
+        {
+            return View(await _formService.GetFormsByUserId());
+        }
     }
 }

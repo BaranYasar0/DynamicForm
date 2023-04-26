@@ -33,5 +33,12 @@ namespace DynamicForm.Api.Application.Features.Rules
             if (!_contextAccessor.HttpContext.User.Identity.IsAuthenticated)
                 throw new BusinessException(FormConstants.UserIsntAuth);
         }
+
+        public async Task CheckDataType(string dataType)
+        {
+            var tempData = dataType.ToLower();
+            //if(tempData=="string"||tempData=="strıng")
+
+        }
     }
 }
