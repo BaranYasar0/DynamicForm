@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using DynamicForm.Api.Application.Features.Commands.Form.Create;
+using DynamicForm.Api.Application.Features.Commands.Form.Update;
 using DynamicForm.Api.Application.Features.Dtos.Fields;
 using DynamicForm.Api.Application.Features.Dtos.Form;
 using DynamicForm.Api.Application.Features.Dtos.Forms;
@@ -30,6 +31,14 @@ namespace DynamicForm.Api.Application.Features.Profiles
             //Get List Query
             CreateMap<Form, GetFormListDto>().ForMember(x => x.GetFieldListDto, y => y.MapFrom(z => z.Fields))
                 .ReverseMap();
+
+            //Update Command
+            CreateMap<UpdateFormCommand, Form>().ForMember(x => x.Fields, y => y.MapFrom(z => z.CreatedFieldDtos));
+            CreateMap<Form, UpdatedFormDto>();
+
+            //GetById Query
+            CreateMap<GetFormListDto, Form>().ForMember(x => x.Fields, y => y.MapFrom(z => z.GetFieldListDto));
+
         }
 
     }

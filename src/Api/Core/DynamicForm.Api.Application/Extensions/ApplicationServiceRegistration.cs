@@ -4,12 +4,14 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using DynamicForm.Api.Application.Features.Commands.Form.Update;
 using DynamicForm.Api.Application.Features.Rules;
 using DynamicForm.Api.Application.Helpers.Authorization;
 using DynamicForm.Api.Application.Services;
 using DynamicForm.Api.Application.Services.Interfaces;
 using DynamicForm.Api.Application.Utilities.Authorization;
 using DynamicForm.Api.Application.Utilities.Pipelines;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,10 +25,13 @@ namespace DynamicForm.Api.Application.Extensions
 
             services.AddMediatR(x => x.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddValidatorsFromAssemblyContaining<UpdateFormValidator>();
 
             services.AddScoped<AuthBusinessRules>();
+            services.AddScoped<FormBusinessRules>();
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
             services.AddScoped<IAuthService, AuthService>();
             services.AddSingleton<ITokenHelper, TokenHelper>();

@@ -1,0 +1,115 @@
+﻿@model List<DynamicForm.MVCWebApp.Models.ViewModels.Forms.GetFormListViewModel>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Forms</h5>
+                
+                
+                @if (Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>CreatedBy</th>
+                                <th>Fields</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Description</td>
+                                <td>@item.CreatedBy</td>
+                                @foreach (var item2 in item.GetFieldListDto)
+                                {
+                                    <td>
+                                        <table class="table table-primary">
+                                            <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Required</th>
+                                                <th>DataType</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>@item2.Name</td>
+                                                <td>@item2.Required</td>
+                                                <td>@item2.DataType</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        </td>
+                                }
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                        </div>
+                    }
+                }
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-auto">
+                    
+    <div id="create_form_dialog" >
+        <form id="myForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="Name"><br><br>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="Description"><br><br>
+            @*<label for="CreatedBy">Created By:</label>
+            <input type="text" id="createdBy" name="CreatedBy"><br><br>*@
+            
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <button onclick="togglePopup()" id="create_form_button">Form Oluştur</button>
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        // Submit form data via AJAX on form submission
+        $('#myForm').submit(function (event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Get form data
+            var valdata = $("#myForm").serialize();
+            alert(valdata);
+
+            // Send AJAX request to specified URL with form data
+            $.ajax({
+                url: 'https://localhost:7038/api/Form/ekle',
+                type: 'POST',
+                dataType: 'json',
+                data: valdata,
+                success: function (response) {
+                    console.log('Form data submitted successfully:', response);
+                    // Add your own success message or redirect the user to a success page
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error submitting form data:', error);
+                    // Add your own error message or handle the error gracefully
+                }
+            });
+        });
+    });
+</script>

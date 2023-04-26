@@ -1,6 +1,7 @@
 using DynamicForm.Api.Application.Extensions;
 using DynamicForm.Api.Application.Utilities.Authorization;
 using DynamicForm.Api.Application.Utilities.Authorization.Hashing;
+using DynamicForm.Api.WebAPI.Extensions;
 using DynamicForm.Infrastructure.Persistance;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -69,7 +70,19 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+app.ConfigureExceptionHandler(app.Services.GetRequiredService<ILogger<Program>>());
+
+
 app.UseHttpsRedirection();
+
+app.UseCors(builder => builder
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowAnyOrigin()
+    );
+    
+
 
 app.UseAuthentication();
 app.UseAuthorization();

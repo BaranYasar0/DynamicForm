@@ -25,7 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicForm.Infrastructure.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicForm.Shared", "src\Shared\DynamicForm.Shared\DynamicForm.Shared.csproj", "{4FE5B639-0B00-48CE-95B1-437A93F3C03F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicForm.Api.WebAPI", "src\Api\WebApi\DynamicForm.Api.WebAPI\DynamicForm.Api.WebAPI.csproj", "{547F0FE6-8FBC-4FB4-873B-CC54783E4C96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamicForm.Api.WebAPI", "src\Api\WebApi\DynamicForm.Api.WebAPI\DynamicForm.Api.WebAPI.csproj", "{547F0FE6-8FBC-4FB4-873B-CC54783E4C96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{D8E3B26D-A295-4498-B614-9E20AC3EA532}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicForm.MVCWebApp", "src\Client\DynamicForm.MVCWebApp\DynamicForm.MVCWebApp.csproj", "{DFDAB886-1BF8-4F0F-AC01-4EA91740DD9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,10 @@ Global
 		{547F0FE6-8FBC-4FB4-873B-CC54783E4C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{547F0FE6-8FBC-4FB4-873B-CC54783E4C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{547F0FE6-8FBC-4FB4-873B-CC54783E4C96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFDAB886-1BF8-4F0F-AC01-4EA91740DD9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFDAB886-1BF8-4F0F-AC01-4EA91740DD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFDAB886-1BF8-4F0F-AC01-4EA91740DD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFDAB886-1BF8-4F0F-AC01-4EA91740DD9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +81,8 @@ Global
 		{0E43F152-A87E-4F92-9C4D-9A74B63B6B52} = {2438E9E7-F7C0-4EA1-ABDE-A482976733AC}
 		{4FE5B639-0B00-48CE-95B1-437A93F3C03F} = {5ECA8956-71FD-4E82-A6C2-035C843F94A7}
 		{547F0FE6-8FBC-4FB4-873B-CC54783E4C96} = {53D40C66-EE39-4F6C-9794-A39E60422AE0}
+		{D8E3B26D-A295-4498-B614-9E20AC3EA532} = {7AC4596B-F343-495E-A819-8EF5D2196720}
+		{DFDAB886-1BF8-4F0F-AC01-4EA91740DD9C} = {D8E3B26D-A295-4498-B614-9E20AC3EA532}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D1EEC0E3-CFD4-4545-8843-C1A5269CE8F4}

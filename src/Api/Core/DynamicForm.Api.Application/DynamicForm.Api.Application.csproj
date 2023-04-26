@@ -25,4 +25,8 @@
     <ProjectReference Include="..\DynamicForm.Api.Domain\DynamicForm.Api.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Commands\Form\Delete\" />
+  </ItemGroup>
+
 </Project>
